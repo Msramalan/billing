@@ -106,10 +106,10 @@
                         </thead>
         
                         <tbody style="font-weight:bold; background-color: #e9e7e7;">
-                            <td>IGST</td>
-                            <td><label id="Taxable"></label></td>
-                            <td><label id="rate"></label></td>
-                            <td><label id="Amount"></label></td>
+                            <td style="text-align: center;">IGST</td>
+                            <td  style="text-align: center;"><label id="Taxable"></label></td>
+                            <td  style="text-align: center;"><label id="rate"></label></td>
+                            <td  style="text-align: center;"><label id="Amount"></label></td>
 
                         </tbody>
         
@@ -171,15 +171,18 @@
                </div>
                 </div>
                 <button type="text" class="btn btn-danger btn-print mt-4 hidden-print" style="width: 100%; border-radius: 10px; outline: none;" onclick="printInvoice()">Print Invoice</button>
-                </div>
-
-
-
-
-               
+                </div>  
             </div>
           </div>
     
+
+
+          <div class="container">
+            <div class="row">
+                <p style="font-weight: bold; margin-left: 750px; margin-top: 130px; font-size: 20px;">For, R GOLD & SILVER SMITH</p>
+                <p style=" margin-left: 750px; margin-top: 100px; font-size: 20px;">Authorized Signatory</p>
+            </div>
+          </div>
         </form>
     </div>
 
@@ -195,7 +198,20 @@
 
 
             const newItemRow =`<tr id="itemRow${itemCounter}">
-                <td><input type="text" class="form-control" placeholder="Enter Item Name" required></td>
+                <td>  <select name="select" id="select" class="form-control"  style="width: 170px;" autofocus>   <!--multiple-->
+            <option value="1">Enter Item Name</option>
+            <option value="2">Kolusu</option>
+            <option value="3">Chain</option>
+            <option value="4">Mothiram</option>
+            <option value="5">Metti</option>
+            <option value="6">Kai-Chain</option>
+            <option value="7">Valayal</option>
+            <option value="8">Kodi</option>
+            <option value="9">Muthu-Arana </option>
+            <option value="10">Kaal-kaappu </option>
+            <option value="11">Pasi-Kolusu</option>
+
+        </select></td>
                 <td></td>
                 <td><input type="number" class="form-control " value="1" placeholder="Enter Quantity" ></td>
                 <td><input type="number" class="form-control quantity" placeholder="Enter Gram" required></td>
@@ -241,12 +257,14 @@
         var Dis = document.getElementById("Dis").value;
         var disCount = (Dis*amt)/100;
         var nettl =Number(amt)-Number(disCount);
-        document.getElementById("disttl").value=disCount;
-        document.getElementById("Nettotal").value=nettl;
+        var disCount1 = Math.round(disCount);
+        var nettl1 = Math.round(nettl);
+        document.getElementById("disttl").value=disCount1;
+        document.getElementById("Nettotal").value=nettl1;
 
 
         let Taxable = document.getElementById("Taxable");
-        let Taxables = `₹ ${nettl}`;
+        let Taxables = `₹ ${nettl1}`;
         Taxable.innerHTML=Taxables;
     }
 
@@ -261,14 +279,17 @@
 
 
         var taxAmount = (tax*amt)/100;
+        var taxAmount1 = Math.round(taxAmount);
+
         let Amount = document.getElementById("Amount");
-        let Amounts = `₹ ${taxAmount}`;
+        let Amounts = `₹ ${taxAmount1}`;
         Amount.innerHTML=Amounts;
 
         var nettll =Number(amt)+Number(taxAmount);
-        document.getElementById("taxttl").value=taxAmount;
-        document.getElementById("Nettotal").value=nettll;
-        document.getElementById("totalAmount").value=nettll;
+        document.getElementById("taxttl").value=taxAmount1;
+        var nettll1 = Math.round(nettll);
+        document.getElementById("Nettotal").value=nettll1;
+        document.getElementById("totalAmount").value=nettll1;
     }
 
     function Balance(){
